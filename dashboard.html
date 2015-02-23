@@ -1,0 +1,122 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="resources/tablesorter/jquery-latest.js"></script> 
+    <script type="text/javascript" src="resources/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="resources/tablesorter/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="resources/tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
+    
+    <script type="text/javascript" src="resources/js/dataLoader.js"></script> 
+    <script type="text/javascript" src="resources/js/pagination.js"></script> 
+    <script type="text/javascript" src="data/mock1.js"></script> 
+    <script type="text/javascript" src="data/mock2.js"></script> 
+    <script type="text/javascript" src="data/mock3.js"></script> 
+    <script type="text/javascript" src="data/mock4.js"></script> 
+    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/tablesorter/addons/pager/jquery.tablesorter.pager.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/tablesorter/themes/blue/style.css" type="text/css" id="" media="print, projection, screen" />
+    <script type="text/javascript">
+    var mock_choosen = mock4;
+    var changeData = function (name){
+      mock_choosen = mock3[name.trim()];
+      dataLoader.update(mock_choosen); 
+    }
+    var changeSingle = function (name){
+      //#todo
+      mock_choosen = mock3[name.trim()];
+      dataLoader.update(mock_choosen); 
+    }
+    $(document).ready(function() 
+    { 
+      dataLoader.update(mock_choosen);    
+      dataLoader.loadHistoricalMenu(mock3);
+      $("#smellTable").tablesorter( {sortList: [[2,1], [3,0], [4,0]]} ); 
+      $('.dropdown-toggle').dropdown(); 
+    }); 
+    google.load("visualization", "1", {packages:["treemap"]});
+
+    </script>
+  </head>
+
+  <body>
+      <br/>
+  <div class="row">
+    <div class="col-md-8">
+      ATFD>=<input type="number" id="atfd" value="5"/> and 
+      WMC>=<input type="number" id="wmc" value="47"> and 
+      TCC<=<input type="number" id="tcc" value="0.33">
+      <button onclick="dataLoader.update(mock_choosen)" class="btn btn-success">Update</button>
+    </div>
+    <div class="col-md-4">
+      Select a dataset:
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">Single</button>
+      <button type="button" class="btn btn-default">GodViz - Core</button>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          Revision
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Dropdown link</a></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+
+    <table id="smellTable" class="tablesorter"> 
+<thead> 
+<tr> 
+    <th>Namespace</th> 
+    <th>Class</th> 
+    <th>TCC</th> 
+    <th>ATFD</th> 
+    <th>WMC</th> 
+    <th>LOC</th> 
+    <th>God Class</th> 
+</tr> 
+</thead> 
+<tbody> 
+
+</tbody> 
+</table> 
+<!-- pager -->
+
+<div class="row">
+  <div class="col-md-8">
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </div>
+  <div class="col-md-4">
+    <h6>Click to focus on a level.</h6>
+    <h6>Right-click to go back one level</h6>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var result = dataLoader.historicalDataSource(mock3),resArr=[['Class', 'Normal Revisions', 'God Class Revisions']];
+        for (name in result){
+          if (result.hasOwnProperty(name)) {
+            resArr.push([name,result[name]["n"],result[name]["y"]]);
+          }
+        }
+        var data = google.visualization.arrayToDataTable(resArr);
+
+        var options = {
+          title: 'God Class Revisions',
+          vAxis: {title: 'Class',  titleTextStyle: {color: 'red'}},
+          isStacked: true,
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('historical_chart'));
+        chart.draw(data, options);
+      }
+</script>
+<div id="historical_chart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>

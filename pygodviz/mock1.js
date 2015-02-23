@@ -1,0 +1,113 @@
+var mock1=[{
+	"name":"ControllerClass1",
+	"namespace":"br.com.example.controllers",
+	"metrics":{
+		"loc":10,
+		"atfd":0,
+		"wmc":0,
+		"tcc":0
+	}
+},
+{
+	"name":"ControllerClass2",
+	"namespace":"br.com.example.controllers",
+	"metrics":{
+		"loc":100,
+		"atfd":0,
+		"wmc":0,
+		"tcc":0
+	}
+},
+{
+	"name":"ControllerGodClass3",
+	"namespace":"br.com.example.controllers",
+	"metrics":{
+		"loc":700,
+		"atfd":5,
+		"wmc":47,
+		"tcc":0.33
+	}
+},
+{
+	"name":"ControllerLesserGodClass4",
+	"namespace":"br.com.example.controllers",
+	"metrics":{
+		"loc":100,
+		"atfd":4,
+		"wmc":50,
+		"tcc":0.33
+	}
+},
+{
+	"name":"ControllerBigClass5",
+	"namespace":"br.com.example.controllers",
+	"metrics":{
+		"loc":200,
+		"atfd":100,
+		"wmc":30,
+		"tcc":0.1
+	}
+},
+{
+	"name":"ControllerBigClass6",
+	"namespace":"br.com.example.controllers",
+	"metrics":{
+		"loc":300,
+		"atfd":5,
+		"wmc":100,
+		"tcc":0.20
+	}
+},
+
+{
+	"name":"GoodClass",
+	"namespace":"br.com.example.helpers",
+	"metrics":{
+		"loc":10,
+		"atfd":0,
+		"wmc":0,
+		"tcc":0
+	}
+},
+{
+	"name":"GoodClass2",
+	"namespace":"br.com.example.helpers",
+	"metrics":{
+		"loc":50,
+		"atfd":0,
+		"wmc":0,
+		"tcc":0
+	}
+},
+
+{
+	"name":"GoodBaseInternal",
+	"namespace":"br.com.example.internal",
+	"metrics":{
+		"loc":100,
+		"atfd":0,
+		"wmc":0,
+		"tcc":0
+	}
+},
+{
+	"name":"BadLogic",
+	"namespace":"br.com.example.internal.logic",
+	"metrics":{
+		"loc":500,
+		"atfd":100,
+		"wmc":100,
+		"tcc":0.5
+	}
+},
+{
+	"name":"Handler",
+	"namespace":"br.com.example.internal.handlers",
+	"metrics":{
+		"loc":100,
+		"atfd":0,
+		"wmc":50,
+		"tcc":0.1
+	}
+},
+]
